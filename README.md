@@ -18,7 +18,7 @@ This module creates a software-based serial port using a configurable pair of GP
 
 Fetch the source:
 ```
-git clone https://github.com/adrianomarto/soft_uart
+git clone https://github.com/ic-pbakker/soft_uart
 ```
 
 Install the package `raspberrypi-kernel-headers`:
@@ -40,17 +40,17 @@ I haven't tried cross-compiling this module, but it should work as well.
 
 Module parameters:
 
-* gpio_tx: int [default = 17]
-* gpio_rx: int [default = 27]
+* gpio_tx: int [default = GPIO 4, ComfilePi pin 7]
+* gpio_rx: int [default = GPIO 17, ComfilePi pin 11]
 
 Loading the module with default parameters:
 ```
 sudo insmod soft_uart.ko
 ```
 
-Loading module with custom parameters:
+Loading module with custom parameters. Reference the GPIO number, not the header pin number:
 ```
-sudo insmod soft_uart.ko gpio_tx=10 gpio_rx=11
+sudo insmod soft_uart.ko gpio_tx=4 gpio_rx=17
 ```
 
 
