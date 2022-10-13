@@ -19,7 +19,7 @@ When a second module is needed, load as module uart_soft1 in addition to uart_so
 
 Fetch the source:
 ```
-git clone https://github.com/ic-pbakker/soft_uart
+git clone https://github.com/ic-pbakker/trees/soft_uart1
 ```
 
 Install the package `raspberrypi-kernel-headers`:
@@ -29,7 +29,7 @@ sudo apt-get install raspberrypi-kernel-headers
 
 Run `make` and `make install`, as usual.
 ```
-cd soft_uart
+cd soft_uart1
 make
 sudo make install
 ```
@@ -39,25 +39,25 @@ I haven't tried cross-compiling this module, but it should work as well.
 
 ## Loading
 
-Module parameters:
+Module parameters for soft_uart1:
 
 * gpio_tx: int [default = GPIO 18, ComfilePi pin 12]
 * gpio_rx: int [default = GPIO 27, ComfilePi pin 13]
 
 Loading the module with default parameters:
 ```
-sudo insmod soft_uart.ko
+sudo insmod soft_uart1.ko
 ```
 
 Loading module with custom parameters. Reference the GPIO number, not the header pin number:
 ```
-sudo insmod soft_uart.ko gpio_tx=4 gpio_rx=17
+sudo insmod soft_uart.ko gpio_tx=18 gpio_rx=27
 ```
 
 
 ## Usage
 
-The device will appear as `/dev/ttySOFT0`. Use it as any usual TTY device.
+The device will appear as `/dev/ttySOFT1`. Use it as any usual TTY device.
 
 You must be included in the group `dialout`. You can verify in what groups you are included by typing `groups`. To add an user to the group `dialout`, type:
 ```
@@ -66,9 +66,9 @@ sudo usermod -aG dialout <username>
 
 Usage examples:
 ```
-minicom -b 4800 -D /dev/ttySOFT0
-cat /dev/ttySOFT0
-echo "hello" > /dev/ttySOFT0
+minicom -b 4800 -D /dev/ttySOFT1
+cat /dev/ttySOFT1
+echo "hello" > /dev/ttySOFT1
 ```
 
 ## Baud rate
