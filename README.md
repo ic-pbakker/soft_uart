@@ -1,9 +1,10 @@
-# soft_uart
+# soft_uart1
 
 Software-based serial port module for Raspberry Pi.
 
-This module creates a software-based serial port using a configurable pair of GPIO pins. The serial port will appear as `/dev/ttySOFT0`.
+This module creates a software-based serial port using a configurable pair of GPIO pins. The serial port will appear as `/dev/ttySOFT1`.
 
+When a second module is needed, load as module uart_soft1 in addition to uart_soft. See https://codeintherightway.blogspot.com/2017/09/soft-uart-implementation-for-raspberry.html
 
 ## Features
 
@@ -40,8 +41,8 @@ I haven't tried cross-compiling this module, but it should work as well.
 
 Module parameters:
 
-* gpio_tx: int [default = GPIO 4, ComfilePi pin 7]
-* gpio_rx: int [default = GPIO 17, ComfilePi pin 11]
+* gpio_tx: int [default = GPIO 18, ComfilePi pin 12]
+* gpio_rx: int [default = GPIO 27, ComfilePi pin 13]
 
 Loading the module with default parameters:
 ```
