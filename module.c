@@ -111,7 +111,7 @@ static int __init soft_uart_init(void)
   // Initializes the driver.
   soft_uart_driver->owner                 = THIS_MODULE;
   soft_uart_driver->driver_name           = "soft_uart_three";
-  soft_uart_driver->name                  = "ttySOFTHREEE";
+  soft_uart_driver->name                  = "ttySOFTHREE";
   soft_uart_driver->major                 = SOFT_UART_MAJOR;
   soft_uart_driver->minor_start           = 0;
   soft_uart_driver->flags                 = TTY_DRIVER_REAL_RAW;
