@@ -12,6 +12,6 @@ clean:
 	$(MAKE) -C $(LINUX) M=$(PWD) clean
 
 install:
-	sudo install -m 644 -c soft_uart_one.ko /lib/modules/$(RELEASE)
+	sudo install -m 644 -c soft_uart_three.ko /lib/modules/$(RELEASE)
 	sudo depmod
 
