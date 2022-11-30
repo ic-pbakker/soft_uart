@@ -228,7 +228,7 @@ static int soft_uart_write(struct tty_struct* tty, const unsigned char* buffer, 
  * @param tty given TTY
  * @return number of bytes
  */
-static int soft_uart_write_room(struct tty_struct* tty)
+static unsigned int soft_uart_write_room(struct tty_struct* tty)
 {
   return raspberry_soft_uart_get_tx_queue_room();
 }
@@ -246,7 +246,7 @@ static void soft_uart_flush_buffer(struct tty_struct* tty)
  * @param tty given TTY
  * @return number of bytes
  */
-static int soft_uart_chars_in_buffer(struct tty_struct* tty)
+static unsigned int soft_uart_chars_in_buffer(struct tty_struct* tty)
 {
   return raspberry_soft_uart_get_tx_queue_size();
 }
