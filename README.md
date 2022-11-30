@@ -1,10 +1,10 @@
-# soft_uart_one
+# soft_uart_two
 
 Software-based serial port module for Raspberry Pi.
 
-This module creates a software-based serial port using a configurable pair of GPIO pins. The serial port will appear as `/dev/ttySOFTONE0`.
+This module creates a software-based serial port using a configurable pair of GPIO pins. The serial port will appear as `/dev/ttySOFTTWO0`.
 
-When a second module is needed, load as module uart_soft_one in addition to uart_soft. Reference https://codeintherightway.blogspot.com/2017/09/soft-uart-implementation-for-raspberry.html
+When a second module is needed, load as module uart_soft_two in addition to uart_soft_one. Reference https://codeintherightway.blogspot.com/2017/09/soft-uart-implementation-for-raspberry.html
 
 ## Features
 
@@ -17,10 +17,10 @@ When a second module is needed, load as module uart_soft_one in addition to uart
 
 ## Compiling
 
-Fetch the source - branch for soft_uart_one:
+Fetch the source - branch for soft_uart_two:
 ```
 ssh-agent
-git clone --branch soft_uart_one --single-branch git@github.com:ic-pbakker/soft_uart.git soft_uart_one
+git clone --branch soft_uart_two --single-branch git@github.com:ic-pbakker/soft_uart.git soft_uart_two
 ```
 
 Install the package `raspberrypi-kernel-headers`:
@@ -30,7 +30,7 @@ sudo apt-get install raspberrypi-kernel-headers
 
 Run `make` and `make install`, as usual.
 ```
-cd soft_uart_one
+cd soft_uart_two
 make
 sudo make install
 ```
@@ -58,18 +58,18 @@ Module parameters for soft_uart_three:
 
 Loading the module with default parameters:
 ```
-sudo insmod soft_uart_one.ko
+sudo insmod soft_uart_two.ko
 ```
 
 Loading module with custom parameters. Reference the GPIO number, not the header pin number:
 ```
-sudo insmod soft_uart_one.ko gpio_tx=4 gpio_rx=17
+sudo insmod soft_uart_two.ko gpio_tx=18 gpio_rx=27
 ```
 
 
 ## Usage
 
-The device will appear as `/dev/ttySOFTONE0`. Use it as any usual TTY device.
+The device will appear as `/dev/ttySOFTTWO0`. Use it as any usual TTY device.
 
 You must be included in the group `dialout`. You can verify in what groups you are included by typing `groups`. To add an user to the group `dialout`, type:
 ```
@@ -78,9 +78,9 @@ sudo usermod -aG dialout <username>
 
 Usage examples:
 ```
-minicom -b 4800 -D /dev/ttySOFTONE0
-cat /dev/ttySOFTONE0
-echo "hello" > /dev/ttySOFTONE0
+minicom -b 4800 -D /dev/ttySOFTTWO0
+cat /dev/ttySOFTTWO0
+echo "hello" > /dev/ttySOFTTWO0
 ```
 
 ## Baud rate
