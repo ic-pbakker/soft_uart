@@ -27,9 +27,18 @@ module_param(gpio_rx, int, 0);
 static int  soft_uart_open(struct tty_struct*, struct file*);
 static void soft_uart_close(struct tty_struct*, struct file*);
 static int  soft_uart_write(struct tty_struct*, const unsigned char*, int);
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(5,15,0)
+// 2022-11-30
+// ComfilePi uses 5.10.103-v7+ (needs signed headers)
+// RaspberryPi 3 Model B+ uses 5.15.61-v7+ (needs unsigned headers)
+static int soft_uart_write_room(struct tty_struct*);
+static void soft_uart_flush_buffer(struct tty_struct*);
+static int soft_uart_chars_in_buffer(struct tty_struct*);
+#else
 static unsigned int soft_uart_write_room(struct tty_struct*);
 static void soft_uart_flush_buffer(struct tty_struct*);
 static unsigned int soft_uart_chars_in_buffer(struct tty_struct*);
+#endif
 static void soft_uart_set_termios(struct tty_struct*, struct ktermios*);
 static void soft_uart_stop(struct tty_struct*);
 static void soft_uart_start(struct tty_struct*);
@@ -228,7 +237,14 @@ static int soft_uart_write(struct tty_struct* tty, const unsigned char* buffer, 
  * @param tty given TTY
  * @return number of bytes
  */
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(5,15,0)
+// 2022-11-30
+// ComfilePi uses 5.10.103-v7+ (needs signed headers)
+// RaspberryPi 3 Model B+ uses 5.15.61-v7+ (needs unsigned headers)
+static int soft_uart_write_room(struct tty_struct* tty)
+#else
 static unsigned int soft_uart_write_room(struct tty_struct* tty)
+#endif
 {
   return raspberry_soft_uart_get_tx_queue_room();
 }
@@ -246,7 +262,14 @@ static void soft_uart_flush_buffer(struct tty_struct* tty)
  * @param tty given TTY
  * @return number of bytes
  */
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(5,15,0)
+// 2022-11-30
+// ComfilePi uses 5.10.103-v7+ (needs signed headers)
+// RaspberryPi 3 Model B+ uses 5.15.61-v7+ (needs unsigned headers)
+static int soft_uart_chars_in_buffer(struct tty_struct* tty)
+#else
 static unsigned int soft_uart_chars_in_buffer(struct tty_struct* tty)
+#endif
 {
   return raspberry_soft_uart_get_tx_queue_size();
 }
