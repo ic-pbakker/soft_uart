@@ -2,7 +2,7 @@
 
 Software-based serial port module for Raspberry Pi.
 
-This module creates a software-based serial port using a configurable pair of GPIO pins. The serial port will appear as `/dev/ttySOFTONE`.
+This module creates a software-based serial port using a configurable pair of GPIO pins. The serial port will appear as `/dev/ttySOFTONE0`.
 
 When a second module is needed, load as module uart_soft_one in addition to uart_soft. Reference https://codeintherightway.blogspot.com/2017/09/soft-uart-implementation-for-raspberry.html
 
