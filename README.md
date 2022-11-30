@@ -20,7 +20,7 @@ When a second module is needed, load as module uart_soft_one in addition to uart
 Fetch the source - branch for soft_uart_one:
 ```
 ssh-agent
-git clone --branch soft_uart_one --single-branch git@github.com:ic-pbakker/soft_uart.git
+git clone --branch soft_uart_one --single-branch git@github.com:ic-pbakker/soft_uart.git soft_uart_one
 ```
 
 Install the package `raspberrypi-kernel-headers`:
@@ -69,7 +69,7 @@ sudo insmod soft_uart_one.ko gpio_tx=4 gpio_rx=17
 
 ## Usage
 
-The device will appear as `/dev/ttySOFTONE`. Use it as any usual TTY device.
+The device will appear as `/dev/ttySOFTONE0`. Use it as any usual TTY device.
 
 You must be included in the group `dialout`. You can verify in what groups you are included by typing `groups`. To add an user to the group `dialout`, type:
 ```
@@ -78,9 +78,9 @@ sudo usermod -aG dialout <username>
 
 Usage examples:
 ```
-minicom -b 4800 -D /dev/ttySOFTONE
-cat /dev/ttySOFTONE
-echo "hello" > /dev/ttySOFTONE
+minicom -b 4800 -D /dev/ttySOFTONE0
+cat /dev/ttySOFTONE0
+echo "hello" > /dev/ttySOFTONE0
 ```
 
 ## Baud rate
