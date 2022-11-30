@@ -262,7 +262,14 @@ static void soft_uart_flush_buffer(struct tty_struct* tty)
  * @param tty given TTY
  * @return number of bytes
  */
+#if LINUX_VERSION_CODE <= KERNEL_VERSION(5,15,0)
+// 2022-11-30
+// ComfilePi uses 5.10.103-v7+ (needs signed headers)
+// RaspberryPi 3 Model B+ uses 5.15.61-v7+ (needs unsigned headers)
+static int soft_uart_chars_in_buffer(struct tty_struct* tty)
+#else
 static unsigned int soft_uart_chars_in_buffer(struct tty_struct* tty)
+#endif
 {
   return raspberry_soft_uart_get_tx_queue_size();
 }
